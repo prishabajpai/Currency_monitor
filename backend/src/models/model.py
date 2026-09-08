@@ -9,7 +9,11 @@ class RateLogs(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key = True, index = True, autoincrement=True)
     rate: Mapped[float] = mapped_column(Float, nullable = False)
-    timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now(timezone.utc), nullable=False, index=True)
+    timestamp: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=lambda: datetime.now(timezone.utc),
+        nullable=False, 
+        index=True)
 
 class Users(Base):
     __tablename__ = "users"
@@ -19,7 +23,7 @@ class Users(Base):
     username: Mapped[str] = mapped_column(String(255), unique=True, nullable=False, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.now(timezone.utc), nullable=False)
 
-    alerts: Mapped[List["Alerts"]] = relationship("Alerts", backpopulates="user", cascade="all, delete-orphan")
+    alerts: Mapped[List["Alerts"]] = relationship("Alerts", back_populates="user", cascade="all, delete-orphan")
 
 class Alerts(Base):
     __tablename__ = "user_alerts"

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from rate_receiver import return_rate
+from src.services.rate_receiver import return_rate
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()

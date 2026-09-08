@@ -22,7 +22,7 @@ function MainPage() {
 
     return (
         <>
-        <div>INR to USD Today</div>
+        <div>INR to GBP Today</div>
         <div>{data ? data.rate : "Loading..."} </div>
         </>
     );
